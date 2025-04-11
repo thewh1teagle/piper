@@ -9,5 +9,5 @@ fi
 
 cd "${this_dir}/piper_train/vits/monotonic_align"
 mkdir -p monotonic_align
-cythonize -i core.pyx
+uv run cythonize -i core.pyx
 mv core*.so monotonic_align/
