@@ -16,7 +16,7 @@ sudo apt-get install espeak-ng -y
 mkdir data
 metadata.csv
 
-python3 -m piper_train.preprocess \
+uv run python -m piper_train.preprocess \
   --language he \
   --input-dir ../../hebrew/dummy_dataset \
   --output-dir ./train \
@@ -24,7 +24,6 @@ python3 -m piper_train.preprocess \
   --single-speaker \
   --sample-rate 22050
 
-https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/es/es_ES/davefx/medium
 
 uv pip install pytorch-lightning
 
@@ -59,3 +58,4 @@ cp /path/to/training_dir/config.json \
 
 english, bryce
 https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US/bryce/medium
+https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/bryce/medium/bryce-3499.ckpt
