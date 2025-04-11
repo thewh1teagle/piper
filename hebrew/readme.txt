@@ -55,3 +55,6 @@ python3 -m piper_train.export_onnx \
     
 cp /path/to/training_dir/config.json \
    /path/to/model.onnx.json
+
+
+english, bryce
