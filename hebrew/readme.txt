@@ -10,7 +10,7 @@ uv venv
 uv pip install -e .
 ./build_monotonic_align.sh
 
-sudo apt-get install espeak-ng
+sudo apt-get install espeak-ng -y
 
 
 mkdir data
@@ -18,8 +18,8 @@ metadata.csv
 
 python3 -m piper_train.preprocess \
   --language he \
-  --input-dir /path/to/dataset_dir/ \
-  --output-dir /path/to/training_dir/ \
+  --input-dir ../../hebrew/dummy_dataset \
+  --output-dir ./train \
   --dataset-format ljspeech \
   --single-speaker \
   --sample-rate 22050
@@ -58,3 +58,4 @@ cp /path/to/training_dir/config.json \
 
 
 english, bryce
+https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US/bryce/medium
