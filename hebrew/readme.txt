@@ -59,3 +59,8 @@ cp /path/to/training_dir/config.json \
 english, bryce
 https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US/bryce/medium
 https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/bryce/medium/bryce-3499.ckpt
+
+
+wget.exe https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/bryce/medium/en_US-bryce-medium.onnx
+wget.exe https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/bryce/medium/en_US-bryce-medium.onnx.json
+&./piper.exe --model en_US-bryce-medium.onnx --config en_US-bryce-medium.onnx.json --text "Hello, world!" --output_file output.wav
