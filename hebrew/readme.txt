@@ -2,6 +2,7 @@ cloud.vastai.com
 
 vastai/pytorch:2.5.1-cuda-12.1.1
 
+sudo apt-get install espeak-ng -y
 curl -LsSf https://astral.sh/uv/install.sh | sh
 source ~/.bashrc
 
@@ -10,11 +11,6 @@ uv venv
 uv pip install -e .
 ./build_monotonic_align.sh
 
-sudo apt-get install espeak-ng -y
-
-
-mkdir data
-metadata.csv
 
 uv run python -m piper_train.preprocess \
   --language he \
@@ -41,16 +37,20 @@ uv run python -m piper_train \
     --precision 32
 
 
-cat test_en-us.jsonl | \
-    python3 -m piper_train.infer \
+uv pip install "numpy<2"
+cat ./train/dataset.jsonl | \
+    uv run python -m piper_train.infer \
         --sample-rate 22050 \
-        --checkpoint /path/to/training_dir/lightning_logs/version_0/checkpoints/*.ckpt \
-        --output-dir /path/to/training_dir/output"
+        --checkpoint bryce-3499.ckpt \
+        --output-dir ./output
+
+ls ./output
 
 
-python3 -m piper_train.export_onnx \
-    /path/to/model.ckpt \
-    /path/to/model.onnx
+uv pip install torchmetrics==0.11.4
+uv run python -m piper_train.export_onnx \
+    bryce-3499.ckpt \
+    bryce-3499.onnx
     
 cp /path/to/training_dir/config.json \
    /path/to/model.onnx.json
