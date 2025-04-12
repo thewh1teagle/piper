@@ -12,6 +12,7 @@ uv pip install -e .
 ./build_monotonic_align.sh
 
 
+uv pip install "numpy<2"
 uv run python -m piper_train.preprocess \
   --language he \
   --input-dir ../../hebrew/dummy_dataset \
@@ -37,7 +38,6 @@ uv run python -m piper_train \
     --precision 32
 
 
-uv pip install "numpy<2"
 cat ./train/dataset.jsonl | \
     uv run python -m piper_train.infer \
         --sample-rate 22050 \
@@ -70,3 +70,5 @@ wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/high
 
 cmake -B build .
 cmake --build build
+
+https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US/ryan/medium
