@@ -26,15 +26,16 @@ uv run python -m piper_train.preprocess \
 uv pip install pytorch-lightning
 
 
+wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/epoch=4641-step=3104302.ckpt
 uv run python -m piper_train \
-    --dataset-dir /path/to/training_dir/ \
+    --dataset-dir "./train" \
     --accelerator 'gpu' \
     --devices 1 \
     --batch-size 32 \
-    --validation-split 0.0 \
+    --validation-split 0 \
     --num-test-examples 0 \
     --max_epochs 10000 \
-    --resume_from_checkpoint /path/to/lessac/epoch=2164-step=1355540.ckpt \
+    --resume_from_checkpoint ./epoch=4641-step=3104302.ckpt \
     --checkpoint-epochs 1 \
     --precision 32
 
@@ -74,7 +75,7 @@ cmake --build build
 
 https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US/ryan/medium
 https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US/ryan/medium
-wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/epoch%3D4641-step%3D3104302.ckpt
+wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/epoch=4641-step=3104302.ckpt
 wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/config.json
 wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/dataset.jsonl.gz
 wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/train.sh
