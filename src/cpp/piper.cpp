@@ -489,6 +489,14 @@ void textToAudio(PiperConfig &config, Voice &voice, std::string text,
     phonemize_codepoints(text, codepointsConfig, phonemes);
   }
 
+  for (const auto& phoneme_sequence : phonemes) {
+    std::wcout << L"Phoneme sequence: ";
+    for (wchar_t phoneme : phoneme_sequence) {
+        std::wcout << phoneme << L' ';
+    }
+    std::wcout << std::endl;
+}
+
   // Synthesize each sentence independently.
   std::vector<PhonemeId> phonemeIds;
   std::map<Phoneme, std::size_t> missingPhonemes;
