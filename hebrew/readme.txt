@@ -40,6 +40,12 @@ uv run python -m piper_train \
     --checkpoint-epochs 1 \
     --precision 32
 
+cat ../../etc/test_sentences/test_he.jsonl  | \
+    python3 -m piper_train.infer \
+        --sample-rate 22050 \
+        --checkpoint ./train/lightning_logs/version_0/checkpoints/*.ckpt \
+        --output-dir ./output
+
 
 cat ./train/dataset.jsonl | \
     uv run python -m piper_train.infer \
