@@ -19,7 +19,8 @@ uv run python -m piper_train.preprocess \
   --output-dir ./train \
   --dataset-format ljspeech \
   --single-speaker \
-  --sample-rate 22050
+  --sample-rate 22050 \
+  --raw-phonemes
 
 
 uv pip install pytorch-lightning
