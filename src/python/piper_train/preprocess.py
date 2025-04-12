@@ -303,7 +303,7 @@ def phonemize_batch_espeak(
 
                     _LOGGER.debug(utt)
                     if args.raw_phonemes:
-                        all_phonemes = [utt.text.split()]
+                        all_phonemes = [list(utt.text)]
                     else:
                         all_phonemes = phonemize_espeak(casing(utt.text), args.language)
 
