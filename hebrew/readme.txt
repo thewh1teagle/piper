@@ -86,3 +86,8 @@ wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/e
 wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/config.json
 wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/dataset.jsonl.gz
 wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/train.sh
+
+
+tensorboard --logdir ./train/lightning_logs/
+
+check loss_disc_all graph and ensure it keep decreasing
