@@ -27,6 +27,7 @@ uv pip install pytorch-lightning
 
 
 wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/epoch=4641-step=3104302.ckpt
+uv pip install torchmetrics==0.11.4
 uv run python -m piper_train \
     --dataset-dir "./train" \
     --accelerator 'gpu' \
