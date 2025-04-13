@@ -43,7 +43,7 @@ Image: vastai/pytorch:2.5.1-cuda-12.1.1
             --output-dir ./output
 
 6. Check loss_disc_all graph and ensure it keep decreasing
-    tensorboard --logdir ./train/lightning_logs/
+    uv run tensorboard --logdir ./train/lightning_logs/
     
 7. Export onnx
     uv run python -m piper_train.export_onnx file.ckpt model.onnx
