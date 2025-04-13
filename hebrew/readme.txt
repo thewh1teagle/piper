@@ -1,16 +1,15 @@
 Cloud: cloud.vastai.com
 Image: vastai/pytorch:2.5.1-cuda-12.1.1
 
-1.
+1. Prepare environment
     sudo apt-get install espeak-ng -y
     curl -LsSf https://astral.sh/uv/install.sh | sh
     source ~/.bashrc
-2.
     cd src/python
     uv venv
     uv pip install -e .
     ./build_monotonic_align.sh
-3.
+2. Preprocess
     uv run python -m piper_train.preprocess \
     --language he \
     --input-dir ../../hebrew/dummy_dataset \
@@ -20,9 +19,10 @@ Image: vastai/pytorch:2.5.1-cuda-12.1.1
     --sample-rate 22050 \
     --raw-phonemes
 
-4. Prepare checkpoint
+3. Prepare checkpoint
     wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/ryan/medium/epoch=4641-step=3104302.ckpt
-5. Train
+
+4. Train
     uv run python -m piper_train \
         --dataset-dir "./train" \
         --accelerator 'gpu' \
@@ -35,17 +35,17 @@ Image: vastai/pytorch:2.5.1-cuda-12.1.1
         --checkpoint-epochs 1 \
         --precision 32
 
-6. Check while train
+5. Check while train
     cat ../../etc/test_sentences/test_he.jsonl  | \
         python3 -m piper_train.infer \
             --sample-rate 22050 \
             --checkpoint ./train/lightning_logs/version_0/checkpoints/*.ckpt \
             --output-dir ./output
 
-7. check loss_disc_all graph and ensure it keep decreasing
+6. Check loss_disc_all graph and ensure it keep decreasing
     tensorboard --logdir ./train/lightning_logs/
     
-8. Export onnx
+7. Export onnx
     uv run python -m piper_train.export_onnx file.ckpt model.onnx
     cp ./train/config.json config.json
 
