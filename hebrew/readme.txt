@@ -1,5 +1,7 @@
 Cloud: cloud.vastai.com
+Hardware: rtx 3080 ti 12GB vram
 Image: vastai/pytorch:2.5.1-cuda-12.1.1
+Time: fine tune took ~1.5 days until ~0.6 total loss
 
 1. Prepare environment
     sudo apt-get install espeak-ng -y
@@ -46,8 +48,11 @@ Image: vastai/pytorch:2.5.1-cuda-12.1.1
     uv run tensorboard --logdir ./train/lightning_logs/
     
 7. Export onnx
-    uv run python -m piper_train.export_onnx file.ckpt model.onnx
-    cp ./train/config.json config.json
+    uv run python -m piper_train.export_onnx ./train/lightning_logs/version_0/checkpoints/*.ckpt model.onnx
+    cp ./train/config.json model.config.json
+
+8. Use it with piper-onnx https://github.com/thewh1teagle/piper-onnx/tree/main/examples
+
 
 Depcrecated
     uv pip install torchmetrics==0.11.4
